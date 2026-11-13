@@ -1,0 +1,42 @@
+menu "EP8 Display"
+
+    config EP8_TARGET_NAME_PREFIX
+        string "BLE name prefix of the Shimano wireless unit"
+        default "SWEN600"
+        help
+            The first device whose advertised name starts with this string is used.
+            Ignored if EP8_TARGET_MAC is set.
+
+    config EP8_TARGET_MAC
+        string "BLE address of the Shimano unit (optional)"
+        default ""
+        help
+            e.g. "DF:8A:B5:19:68:81". Leave empty to match by name prefix.
+
+    config EP8_PASSKEY
+        int "Passkey used if the unit asks for passkey entry"
+        range 0 999999
+        default 0
+
+    config EP8_POLL_INTERVAL_S
+        int "Fallback battery read interval (seconds)"
+        range 5 3600
+        default 60
+
+    config EP8_I2C_SDA_GPIO
+        int "OLED SDA GPIO"
+        default 6
+        help
+            XIAO ESP32-C3 D4 = GPIO6.
+
+    config EP8_I2C_SCL_GPIO
+        int "OLED SCL GPIO"
+        default 7
+        help
+            XIAO ESP32-C3 D5 = GPIO7.
+
+    config EP8_OLED_I2C_ADDR
+        hex "OLED I2C address"
+        default 0x3C
+
+endmenu
